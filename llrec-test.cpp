@@ -2,6 +2,7 @@
 #include <fstream>
 #include <functional>
 #include "llrec.h"
+#include "stack.h" // idk how they want us to make it
 using namespace std;
 
 /**
@@ -67,7 +68,11 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
+struct rejectNode{
+    bool operator()(int a){
+        return a > 8;
+    }
+};
 
 
 
@@ -86,10 +91,18 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller;
+    Node* larger;
+    llpivot(head, smaller, larger, 10);
+    cout<<"smaller"<<endl;
+    print(smaller);
+    cout<<"larger"<<endl;
+    print(larger);
+    rejectNode pred;
+    Node* head2 = llfilter(smaller, pred);
+    cout<<"filter"<<endl;
+    print(head2);
 
-
-
-    
     return 0;
 
 }

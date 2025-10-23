@@ -11,6 +11,9 @@ struct Event
 
 typedef struct EventLess {
         //write the operator() required to make this a functor that compares Events by time
+      bool operator()(Event* e1, Event* e2){
+        return (e1->time < e2->time); // min heap normally implements greater but my version uses less as a default
+      }
 } EventLess;
 	
 #endif
